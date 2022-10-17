@@ -31,14 +31,27 @@ variable "subnet_name" {
     description = "name of subnet"
     type = string
 }
+variable "subnet2_name" {
+    description = "name of subnet2"
+    type = string
+}
 variable "subnet_address_space" {
     description = "address space of subnet"
+    type = list
+}
+variable "subnet2_address_space" {
+    description = "address space of subnet2"
     type = list
 }
 variable "nic01_name" {
     description = "name of network interface in azure to vm"
     type = string
     default = "nic-01"
+}
+variable "nic02_name" {
+    description = "name of network interface in azure to vm2"
+    type = string
+    default = "nic-02"
 }
 variable "ipconfig_name" {
     description = "name of network interface in vm"
@@ -48,7 +61,7 @@ variable "ipconfig_name" {
 variable "priv_ip_alloc" {
     description = "dhcp or static for network address assignment"
     type = string
-    default = "dynamic"
+    default = "Dynamic"
 }
 variable "vm01_name" {
     description = "name of virtual machine"
@@ -81,15 +94,31 @@ variable "publisher" {
     description = "required"
     type = string
 }
+variable "publisher2" {
+    description = "required"
+    type = string
+}
 variable "offer" {
+    description = "Type of server image"
+    type = string
+}
+variable "offer2" {
     description = "Type of server image"
     type = string
 }
 variable "sku" {
     type = string
     description = "os image name"
+}
+variable "sku2" {
+    type = string
+    description = "os image name"
 } 
 variable "os_version" {
     description = "version of OS image"
+    type = string
+}
+variable "vm02_name" {
+    description = "name of the second virtual machine"
     type = string
 }
