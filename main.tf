@@ -1,21 +1,21 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = "3.27.0"
-      
+
     }
   }
 }
 provider "azurerm" {
-    features {}
-subscription_id = var.sub_id
+  features {}
+  subscription_id = var.sub_id
 }
 # deploy resource group for solution
 resource "azurerm_resource_group" "rg-01" {
   name     = var.rg-01_name
   location = var.rg-01_location
-  tags = var.tags
+  tags     = var.tags
 }
 # deploy virtual network
 resource "azurerm_virtual_network" "vnet-01" {
@@ -39,7 +39,7 @@ resource "azurerm_subnet" "subnet-02" {
 }
 # deploy network security group
 resource "azurerm_network_security_group" "nsg-01" {
-  name                = "ksm-validator-nsg"
+  name                = var.nsg-01_name
   location            = azurerm_resource_group.rg-01.location
   resource_group_name = azurerm_resource_group.rg-01.name
 
@@ -124,11 +124,11 @@ resource "random_password" "password" {
   override_special = "!#$%&*()-_=+[]{}<>:?"
 }
 output "output_password" {
-value = random_password.password.result
-sensitive = true
+  value     = random_password.password.result
+  sensitive = true
 }
 
-  resource "azurerm_windows_virtual_machine" "vm-02" {
+resource "azurerm_windows_virtual_machine" "vm-02" {
   name                = var.vm02_name
   resource_group_name = azurerm_resource_group.rg-01.name
   location            = azurerm_resource_group.rg-01.location
@@ -143,7 +143,7 @@ sensitive = true
     caching              = var.disk_caching
     storage_account_type = var.stg_acct_type
   }
-# Build Windows admin server
+  # build Windows admin server
   source_image_reference {
     publisher = var.publisher2
     offer     = var.offer2
@@ -151,5 +151,32 @@ sensitive = true
     version   = var.os_version
   }
 
+}
+# subnet for bastion
+resource "azurerm_subnet" "bastion-subnet" {
+  name                 = "AzureBastionSubnet"
+  resource_group_name  = azurerm_resource_group.rg-01.name
+  virtual_network_name = azurerm_virtual_network.vnet-01.name
+  address_prefixes     = var.subnet3_address_space
+}
+# public ip for bastion
+resource "azurerm_public_ip" "public-ip" {
+  name                = var.bastion_ip_name
+  location            = azurerm_resource_group.rg-01.location
+  resource_group_name = azurerm_resource_group.rg-01.name
+  allocation_method   = var.allocation_method
+  sku                 = var.sku_ip
+}
+# create bastion host
+resource "azurerm_bastion_host" "bastion" {
+  name                = var.bastion_instance_name
+  location            = azurerm_resource_group.rg-01.location
+  resource_group_name = azurerm_resource_group.rg-01.name
+
+  ip_configuration {
+    name                 = var.bastion_ip_configuration
+    subnet_id            = azurerm_subnet.bastion-subnet.id
+    public_ip_address_id = azurerm_public_ip.public-ip.id
+  }
 }
 
