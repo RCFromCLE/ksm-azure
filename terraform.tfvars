@@ -10,7 +10,6 @@ vm01_name = "val-ubu-01"
 vm02_name = "admin-ubu-01"
 sku_size = "Standard_B2s"
 admin_user = "rc"
-
 stg_acct_type = "Standard_LRS"
 publisher = "Canonical"
 offer = "UbuntuServer"
