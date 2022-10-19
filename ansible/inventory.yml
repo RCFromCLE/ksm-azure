@@ -2,7 +2,7 @@
 
 # Validator 0
 [validator_0]
-147.75.76.65
+127.0.0.1
 
 # NOTE: optional variables can just be removed.
 [validator_0:vars]
@@ -16,9 +16,9 @@ logging_filter='sync=warn,afg=warn,babe=warn'
 # Location for database, keys, etc (optional)
 #base_path='/mnt/volume'
 # Setup a nginx reverse proxy in front of the binary (optional). Disabled by default.
-enable_reverse_proxy = false
+enable_reverse_proxy = true
 # Any additional flags passed on to the 'polkadot' binary (optional)
-additional_flags = '--no-prometheus --no-mdns'
+#additional_flags = '--no-prometheus --no-mdns'
 
 # Validator 1
 #[validator_1]
