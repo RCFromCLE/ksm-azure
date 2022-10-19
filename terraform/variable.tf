@@ -161,7 +161,11 @@ variable "public_ip_count" {
   default = 1
 }
 variable "disk_size" {
-  description = "disk size used for virtual machine"
+  description = "disk size used for virtual machine in GB"
   type = number
-  default = 64
+  default = 256
+}
+variable "ssh_allowed_ip_range" {
+  description = "public ip segment where ssh connections are allowed to connect to validator from"
+  type = string
 }

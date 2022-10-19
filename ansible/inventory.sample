@@ -6,9 +6,9 @@
 
 # NOTE: optional variables can just be removed.
 [validator_0:vars]
-ansible_user=alice
+ansible_user=rc
 # Set an individual node name (optional)
-node_name='Alice_Validator'
+node_name='MisfitsStaking-1'
 # Setup one or multiple telemetry endpoints (optional)
 telemetry_url='wss://telemetry.polkadot.io/submit/,wss://telemetry-backend.w3f.community/submit'
 # Only log specify levels, e.g. warnings (optional)
@@ -21,32 +21,23 @@ enable_reverse_proxy = false
 additional_flags = '--no-prometheus --no-mdns'
 
 # Validator 1
-[validator_1]
-162.12.35.55
-
-[validator_1:vars]
-ansible_user=bob
-telemetry_url=wss://telemetry.polkadot.io/submit/
-logging_filter='sync=warn,afg=warn,babe=warn'
-
-# ## Group all nodes
-[validator:children]
-validator_0
-validator_1
+#[validator_1]
+#localhost
 
 # Common variables
 [all:vars]
 # Project name. Will be used as a prefix for the auto-generated node names
 # if an individual `nodeName` is not specified.
-project=alice-in-wonderland
+project=Misfits-Staking
 
 # Can be left as is.
 ansible_ssh_common_args='-o StrictHostKeyChecking=no -o ConnectTimeout=15'
 build_dir=$HOME/.config/polkadot-secure-validator/build/w3f/ansible
 
 # Specify which `polkadot` binary to install. Checksum is verified during execution.
-polkadot_binary_url='https://github.com/paritytech/polkadot/releases/download/v0.9.1/polkadot'
-polkadot_binary_checksum='sha256:00185307376ca0bacf28504e76d4c61ebf84abfba6c31780c9966325add83e1e'
+polkadot_binary_url='https://github.com/paritytech/polkadot/releases/download/v0.9.30/polkadot'
+polkadot_binary_checksum='sha256:eafd72da448162aa5624cc101f4eaaeac6f667a20ec967bf45ce790ce1676927'
+'
 
 # Specify the chain/network.
 #
@@ -58,18 +49,18 @@ polkadot_binary_checksum='sha256:00185307376ca0bacf28504e76d4c61ebf84abfba6c3178
 #
 # For Kusama:
 # ```
-# chain=kusama
-# polkadot_network_id=ksmcc3
+chain=kusama
+polkadot_network_id=ksmcc3
 # ```
-polkadot_network_id=polkadot
-chain=polkadot
+#polkadot_network_id=polkadot
+#chain=polkadot
 
 # Nginx authentication settings (for Prometheus).
 nginx_user='prometheus'
 nginx_password='nginx_password'
 
 # Node exporter settings. Disabled by default.
-node_exporter_enabled='false'
+node_exporter_enabled='Disabled'
 node_exporter_binary_url='https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-amd64.tar.gz'
 node_exporter_binary_checksum='sha256:b2503fd932f85f4e5baf161268854bf5d22001869b84f00fd2d1f57b51b72424'
 
@@ -82,5 +73,5 @@ polkadot_restart_month='2'
 polkadot_restart_weekday='1'
 
 # Optional: Restore the chain db from a .7z snapshot
-polkadot_db_snapshot_url='https://ksm-rocksdb.polkashots.io/kusama-6658753.RocksDb.7z'
-polkadot_db_snapshot_checksum='sha256:4f61a99e4b00acb335aff52f2383880d53b30617c0ae67ac47c611e7bf6971ff'
+polkadot_db_snapshot_url='https://ksm-rocksdb.polkashots.io/kusama-14949807.RocksDb.tar.lz4'
+#polkadot_db_snapshot_checksum='sha256:4f61a99e4b00acb335aff52f2383880d53b30617c0ae67ac47c611e7bf6971ff'

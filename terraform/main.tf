@@ -91,7 +91,7 @@ resource "azurerm_network_security_rule" "sshIn" {
   protocol                    = "Tcp"
   source_port_range           = "*"
   destination_port_range      = "22"
-  source_address_prefix       = "*"
+  source_address_prefix       = var.ssh_allowed_ip_range
   destination_address_prefix  = "*"
   resource_group_name         = var.rg-01_name
   network_security_group_name = var.nsg-01_name
@@ -187,7 +187,11 @@ resource "azurerm_network_interface" "nic-01" {
     name                          = var.ipconfig_name
     subnet_id                     = azurerm_subnet.subnet-01.id
     private_ip_address_allocation = var.priv_ip_alloc
+    public_ip_address_id          = azurerm_public_ip.pub_ip01.id
   }
+  depends_on = [
+    azurerm_public_ip.pub_ip01
+  ]
 }
 # deploy nic for vm 2
 # resource "azurerm_network_interface" "nic-02" {
