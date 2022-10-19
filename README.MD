@@ -1,1 +1,1 @@
-# Deploy a Kusama (or DOT) validator using Azure, Terraform, and Ansible.
+# Deploy a Kusama Validator into Azure using Terraform and Ansible.
