@@ -15,7 +15,7 @@ variable "tags" {
   description = "tags for resources"
   type        = map(any)
   default = {
-    source = "terraform"
+    source = "terraform"  
     app    = "ksm"
   }
 }
@@ -150,4 +150,18 @@ variable "bastion_instance_name" {
 variable "bastion_ip_configuration" {
   description = "name of the bastion ip configuration"
   type        = string
+}
+variable "public_ip-01_name" {
+  description = "name for public ip 1"
+  type = string
+}
+variable "public_ip_count" {
+  description = "name of public ips"
+  type = number
+  default = 1
+}
+variable "disk_size" {
+  description = "disk size used for virtual machine"
+  type = number
+  default = 64
 }
