@@ -2,10 +2,11 @@
 
 1. Deploy platform layer into Azure using main.tf in terraform directory.
 
-2. Deploy application layer using Stakeworld's deployment script - https://github.com/stakeworld/stakeworld-scripts.
+2. Deploy application layer using Stakeworld's deployment script 
+
 - 1. ``sudo apt update``
 - 2. ``curl -o- -L https://raw.githubusercontent.com/stakeworld/stakeworld-scripts/master/node-install.sh | bash`` 
     
-#### Troubleshooting:
+#### Helpful troubleshooting commands:
 - sudo systemctl status misfitsstaking-01.service
 -
