@@ -7,6 +7,15 @@
 - 1. ``sudo apt update``
 - 2. ``curl -o- -L https://raw.githubusercontent.com/stakeworld/stakeworld-scripts/master/node-install.sh | bash`` 
     
-#### Helpful troubleshooting commands:
-- sudo systemctl status misfitsstaking-01.service
--
+#### Helpful commands:
+
+- View information from Polkadot service 
+``sudo systemctl status MisfitsStaking-01.service``
+- View additional info from Polkadot service
+``journalctl -xefu MisfitsStaking-01.service``
+- Edit Polkadot service file
+``vim /etc/systemd/system/MisfitsStaking-01.service``
+- Restart Polkadot Service
+``sudo systemctl daemon-reload``
+- Show Session Keys
+``curl -H "Content-Type: application/json" -d '{"id":1, "jsonrpc":"2.0", "method": "author_rotateKeys", "params":[]}' http://localhost:9901``

@@ -31,10 +31,6 @@ variable "nsg-01_name" {
   description = "name of the network security group"
   type        = string
 }
-variable "bastion_ip_name" {
-  description = "name of the bastion public ip"
-  type        = string
-}
 variable "allocation_method" {
   description = "name of the allocation method for public ip"
   type        = string
@@ -47,32 +43,14 @@ variable "subnet_name" {
   description = "name of subnet for validator"
   type        = string
 }
-variable "subnet2_name" {
-  description = "name of subnet for admin machine"
-  type        = string
-}
 variable "subnet_address_space" {
   description = "address space of subnet for validator"
   type        = list(any)
 }
-variable "subnet2_address_space" {
-  description = "address space of subnet2 for admin machine"
-  type        = list(any)
-}
-variable "subnet3_address_space" {
-  description = "address space of subnet3 for bastion host"
-  type        = list(any)
-}
-
 variable "nic01_name" {
   description = "name of network interface in azure to vm"
   type        = string
   default     = "nic-01"
-}
-variable "nic02_name" {
-  description = "name of network interface in azure to vm2"
-  type        = string
-  default     = "nic-02"
 }
 variable "ipconfig_name" {
   description = "name of network interface in vm"
@@ -115,15 +93,7 @@ variable "publisher" {
   description = "required"
   type        = string
 }
-variable "publisher2" {
-  description = "required"
-  type        = string
-}
 variable "offer" {
-  description = "Type of server image"
-  type        = string
-}
-variable "offer2" {
   description = "Type of server image"
   type        = string
 }
@@ -131,24 +101,8 @@ variable "sku" {
   type        = string
   description = "os image name"
 }
-variable "sku2" {
-  type        = string
-  description = "os image name"
-}
 variable "os_version" {
   description = "version of OS image"
-  type        = string
-}
-variable "vm02_name" {
-  description = "name of the second virtual machine"
-  type        = string
-}
-variable "bastion_instance_name" {
-  description = "name of the bastion host"
-  type        = string
-}
-variable "bastion_ip_configuration" {
-  description = "name of the bastion ip configuration"
   type        = string
 }
 variable "public_ip-01_name" {
