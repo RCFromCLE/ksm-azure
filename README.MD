@@ -1,10 +1,6 @@
 # Deploy a Kusama Validator into Azure using Terraform and Bash Script(s).
 
-1. Deploy platform layer into Azure using main.tf in terraform directory.
-
-2. Deploy application layer using Stakeworld's deployment script 
-
-- ``curl -o- -L https://raw.githubusercontent.com/stakeworld/stakeworld-scripts/master/node-install.sh | bash`` 
+https://rudycorradetti.com/2022/10/22/deploying-a-kusama-validator-into-azure-featuring-terraform-and-bash/
     
 ### Monitoring Your KSM Validator Using Grafana
 
